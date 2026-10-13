@@ -6,11 +6,13 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: NODE_OPTIONS=--max-old-space-size=400 NEXT_TELEMETRY_DISABLED=1 npm start
     healthCheckPath: /
     envVars:
       - key: NODE_VERSION
         value: "24"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
       - key: NEXT_PUBLIC_SITE_URL
         value: https://cbs-customs-brokerage.onrender.com
       - key: CBS_ADMIN_PASSWORD
